@@ -27,6 +27,15 @@ resources:
     type: cluster
     integration: ship-kubernetes
   
+  - name: newkubebastioncluster
+    type: cluster
+    integration: ship-newkubernetes
+    pointer:
+      bastionHost:
+        address: 54.152.191.70
+        user: ubuntu #bastionHost user
+        keyIntegration: ship_newkubesshbastion
+        
   - name: newkubecluster
     type: cluster
     integration: ship-newkubernetes
@@ -50,6 +59,10 @@ resources:
     type: integration
     integration: "ship-kubernetes"  
   
+  - name: ship_newkubesshbastion
+    type: integration
+    integration: "ssh-bastion"
+    
   - name: ship_newkubeint
     type: integration
     integration: "ship-newkubernetes" 
