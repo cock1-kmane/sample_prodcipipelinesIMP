@@ -7,7 +7,7 @@ jobs:
   #    - TASK:
     #    - script: ls
   
-  - name: oldddcint-runsh
+  - name: oldddcintrunsh
     type: runSh
     steps:
       - IN: sample_prodCiPipelinesRepo
@@ -23,7 +23,7 @@ jobs:
         - script: echo SHIP_OLDKUBEINT_INTEGRATION_BASTIONPUBLICKEY=$SHIP_OLDKUBEINT_INTEGRATION_BASTIONPUBLICKEY
       #- OUT: test_out_img
  
-  - name: newddcint-runsh
+  - name: newddcintrunsh
     type: runSh
     allowPublicAccess: false
     steps:      
@@ -39,33 +39,33 @@ jobs:
         - script: echo SHIP_NEWKUBEINT_INTEGRATION_BASTIONPRIVATEKEY=$SHIP_NEWKUBEINT_INTEGRATION_BASTIONPRIVATEKEY
         - script: echo SHIP_NEWKUBEINT_INTEGRATION_BASTIONPUBLICKEY=$SHIP_NEWKUBEINT_INTEGRATION_BASTIONPUBLICKEY
   
-  - name: oldddcclu-runsh
+  - name: oldddcclurunsh
     type: runSh
     steps:
-      - IN: oldkube_cluster
+      - IN: oldkubecluster
       - TASK:
-        - script: echo OLDKUBE_CLUSTER_INTEGRATION_NAME=$OLDKUBE_CLUSTER_INTEGRATION_NAME
-        - script: echo OLDKUBE_CLUSTER_INTEGRATION_CLUSTERACCESSTYPE=$OLDKUBE_CLUSTER_INTEGRATION_CLUSTERACCESSTYPE
-        - script: echo OLDKUBE_CLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT=$OLDKUBE_CLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT
-        - script: echo OLDKUBE_CLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT=$OLDKUBE_CLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT
-        - script: echo OLDKUBE_CLUSTER_INTEGRATION_BASTIONHOSTIP=$OLDKUBE_CLUSTER_INTEGRATION_BASTIONHOSTIP
-        - script: echo OLDKUBE_CLUSTER_INTEGRATION_BASTIONPRIVATEKEY=$OLDKUBE_CLUSTER_INTEGRATION_BASTIONPRIVATEKEY
-        - script: echo OLDKUBE_CLUSTER_INTEGRATION_BASTIONPUBLICKEY=$OLDKUBE_CLUSTER_INTEGRATION_BASTIONPUBLICKEY
+        - script: echo OLDKUBECLUSTER_INTEGRATION_NAME=$OLDKUBE_CLUSTER_INTEGRATION_NAME
+        - script: echo OLDKUBECLUSTER_INTEGRATION_CLUSTERACCESSTYPE=$OLDKUBE_CLUSTER_INTEGRATION_CLUSTERACCESSTYPE
+        - script: echo OLDKUBECLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT=$OLDKUBE_CLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT
+        - script: echo OLDKUBECLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT=$OLDKUBE_CLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT
+        - script: echo OLDKUBECLUSTER_INTEGRATION_BASTIONHOSTIP=$OLDKUBE_CLUSTER_INTEGRATION_BASTIONHOSTIP
+        - script: echo OLDKUBECLUSTER_INTEGRATION_BASTIONPRIVATEKEY=$OLDKUBE_CLUSTER_INTEGRATION_BASTIONPRIVATEKEY
+        - script: echo OLDKUBECLUSTER_INTEGRATION_BASTIONPUBLICKEY=$OLDKUBE_CLUSTER_INTEGRATION_BASTIONPUBLICKEY
       #- OUT: test_out_img
  
-  - name: newddcclu-runsh
+  - name: newddcclurunsh
     type: runSh
     allowPublicAccess: false
     steps:      
-      - IN: newkube_cluster
+      - IN: newkubecluster
       - TASK:
-        - script: echo NEWKUBE_CLUSTER_INTEGRATION_NAME=$NEWKUBE_CLUSTER_INTEGRATION_NAME
-        - script: echo NEWKUBE_CLUSTER_INTEGRATION_CLUSTERACCESSTYPE=$NEWKUBE_CLUSTER_INTEGRATION_CLUSTERACCESSTYPE
-        - script: echo NEWKUBE_CLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT=$NEWKUBE_CLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT
-        - script: echo NEWKUBE_CLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT
-        - script: echo NEWKUBE_CLUSTER_INTEGRATION_BASTIONHOSTIP=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONHOSTIP
-        - script: echo NEWKUBE_CLUSTER_INTEGRATION_BASTIONPRIVATEKEY=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONPRIVATEKEY
-        - script: echo NEWKUBE_CLUSTER_INTEGRATION_BASTIONPUBLICKEY=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONPUBLICKEY
+        - script: echo NEWKUBECLUSTER_INTEGRATION_NAME=$NEWKUBE_CLUSTER_INTEGRATION_NAME
+        - script: echo NEWKUBECLUSTER_INTEGRATION_CLUSTERACCESSTYPE=$NEWKUBE_CLUSTER_INTEGRATION_CLUSTERACCESSTYPE
+        - script: echo NEWKUBECLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT=$NEWKUBE_CLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT
+        - script: echo NEWKUBECLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT
+        - script: echo NEWKUBECLUSTER_INTEGRATION_BASTIONHOSTIP=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONHOSTIP
+        - script: echo NEWKUBECLUSTER_INTEGRATION_BASTIONPRIVATEKEY=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONPRIVATEKEY
+        - script: echo NEWKUBECLUSTER_INTEGRATION_BASTIONPUBLICKEY=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONPUBLICKEY
         
   - name: manifest_dep
     type: manifest
@@ -77,111 +77,111 @@ jobs:
     steps:
       - IN: deploy_img2
       
-  - name: deploy-newkubeupgradetoplevel
+  - name: deploynewkubeupgradetoplevel
     type: deploy
     method: upgrade
     workflow: serial
     steps:      
       - IN: manifest_dep
       #- IN: manifest_dep2
-      - IN: newkube_cluster
+      - IN: newkubecluster
       - IN: kube_dopts
       - TASK: managed  
     flags: new-kube
   
-  - name: deploy-newkubeupgradebottom
+  - name: deploynewkubeupgradebottom
     type: deploy
     steps:      
       - IN: manifest_dep
-      - IN: newkube_cluster
+      - IN: newkubecluster
       - IN: kube_dopts
       - TASK: managed 
         deployMethod: upgrade
     flags: new-kube
     
-  - name: deploy-newkubedefault
+  - name: deploynewkubedefault
     type: deploy
     steps:      
       - IN: manifest_dep
-      - IN: newkube_cluster
+      - IN: newkubecluster
       - IN: kube_dopts
       - TASK: managed  
     flags: new-kube
   
-  - name: deploy-oldkubeupgradetoplevel
+  - name: deployoldkubeupgradetoplevel
     type: deploy
     method: upgrade
     workflow: serial
     steps:      
       - IN: manifest_dep
      # - IN: manifest_dep2
-      - IN: oldkube_cluster
+      - IN: oldkubecluster
       - IN: kube_dopts
       - TASK: managed  
     flags: old-kube
   
-  - name: deploy-oldkubeupgradebottom
+  - name: deployoldkubeupgradebottom
     type: deploy
     steps:      
       - IN: manifest_dep
-      - IN: oldkube_cluster
+      - IN: oldkubecluster
       - IN: kube_dopts
       - TASK: managed 
         deployMethod: upgrade
     flags: old-kube
     
-  - name: deploy-oldkubedefault
+  - name: deployoldkubedefault
     type: deploy
     steps:      
       - IN: manifest_dep
-      - IN: oldkube_cluster
+      - IN: oldkubecluster
       - IN: kube_dopts
       - TASK: managed  
     flags: old-kube
     
-  - name: deploy-oldkubebluegreen
+  - name: deployoldkubebluegreen
     type: deploy
     workflow: parallel
     steps:      
       - IN: manifest_dep
      # - IN: manifest_dep2
-      - IN: oldkube_cluster
+      - IN: oldkubecluster
       - IN: kube_dopts
       - TASK: managed  
     flags: old-kube
   
-  - name: deploy-oldkubereplace
+  - name: deployoldkubereplace
     type: deploy
     method: replace
     workflow: parallel
     steps:      
       - IN: manifest_dep
      # - IN: manifest_dep2
-      - IN: oldkube_cluster
+      - IN: oldkubecluster
       - IN: kube_dopts
       - TASK: managed  
     flags: old-kube
     
-  - name: deploy-newkubebluegreen
+  - name: deploynewkubebluegreen
     type: deploy
     #workflow: parallel
     steps:      
       - IN: manifest_dep
      # - IN: manifest_dep2
-      - IN: newkube_cluster
+      - IN: newkubecluster
       - IN: kube_dopts
       - TASK: managed 
         deployMethod: blueGreen
     flags: new-kube
   
-  - name: deploy-newkubereplace
+  - name: deploynewkubereplace
     type: deploy
     #method: replace
     #workflow: parallel
     steps:      
       - IN: manifest_dep
       #- IN: manifest_dep2
-      - IN: newkube_cluster
+      - IN: newkubecluster
       - IN: kube_dopts
       - TASK: managed 
         deployMethod: replace
