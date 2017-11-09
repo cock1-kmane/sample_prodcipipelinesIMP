@@ -108,6 +108,14 @@ resources:
   - name: ship_newkubeint
     type: integration
     integration: "ship-newkubernetes" 
+  
+  - name: ship_oldkubecli
+    type: cliConfig
+    integration: "ship-kubernetes"
+    
+  - name: ship_newkubecli
+    type: cliConfig
+    integration: "ship-newkubernetes"
     
   - name: test_params
     type: params
