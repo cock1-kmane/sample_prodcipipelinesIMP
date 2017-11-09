@@ -35,6 +35,15 @@ resources:
         address: 54.152.191.70
         user: ubuntu #bastionHost user
         keyIntegration: ship_newkubesshbastion
+  
+  - name: newkubebastionloadbalancer
+    type: loadBalancer
+    integration: ship-newkubernetes
+    pointer:
+      bastionHost:
+        address: 54.152.191.70
+        user: ubuntu #bastionHost user
+        keyIntegration: ship_newkubesshbastion
         
   - name: newkubecluster
     type: cluster
