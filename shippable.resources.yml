@@ -34,7 +34,7 @@ resources:
   - name: kube_dopts
     type: dockerOptions
     version:
-      memory: 64
+      memory: 68
     flags: ddc_options  
     
   - name: test_out_img
