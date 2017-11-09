@@ -1,5 +1,5 @@
 triggers:
-  - name: t1ddc
+  - name: t1kube
     type: trigger
     version:
       counter: 0
