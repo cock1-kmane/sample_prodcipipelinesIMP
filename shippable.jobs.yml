@@ -146,6 +146,7 @@ jobs:
       - IN: manifestdep
       #- IN: manifest_dep2
       - IN: newkubecluster
+      - IN: newkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed  
     flags: new-kube
@@ -155,6 +156,7 @@ jobs:
     steps:      
       - IN: manifestdep
       - IN: newkubecluster
+      - IN: newkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed 
         deployMethod: upgrade
@@ -165,6 +167,7 @@ jobs:
     steps:      
       - IN: manifestdep
       - IN: newkubecluster
+      - IN: newkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed  
     flags: new-kube
@@ -177,6 +180,7 @@ jobs:
       - IN: manifestdep
      # - IN: manifest_dep2
       - IN: oldkubecluster
+      - IN: oldkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed  
     flags: old-kube
@@ -186,6 +190,7 @@ jobs:
     steps:      
       - IN: manifestdep
       - IN: oldkubecluster
+      - IN: oldkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed 
         deployMethod: upgrade
@@ -196,6 +201,7 @@ jobs:
     steps:      
       - IN: manifestdep
       - IN: oldkubecluster
+      - IN: oldkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed  
     flags: old-kube
@@ -207,6 +213,7 @@ jobs:
       - IN: manifestdep
      # - IN: manifest_dep2
       - IN: oldkubecluster
+      - IN: oldkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed  
     flags: old-kube
@@ -219,6 +226,7 @@ jobs:
       - IN: manifestdep
      # - IN: manifest_dep2
       - IN: oldkubecluster
+      - IN: oldkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed  
     flags: old-kube
@@ -230,6 +238,7 @@ jobs:
       - IN: manifestdep
      # - IN: manifest_dep2
       - IN: newkubecluster
+      - IN: newkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed 
         deployMethod: blueGreen
@@ -243,8 +252,8 @@ jobs:
       - IN: manifestdep
       #- IN: manifest_dep2
       - IN: newkubecluster
+      - IN: newkubebastionloadbalancer
       - IN: kube_dopts
       - TASK: managed 
         deployMethod: replace
     flags: new-kube
-    
