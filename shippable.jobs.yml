@@ -67,7 +67,7 @@ jobs:
         - script: echo NEWKUBECLUSTER_INTEGRATION_BASTIONPRIVATEKEY=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONPRIVATEKEY
         - script: echo NEWKUBECLUSTER_INTEGRATION_BASTIONPUBLICKEY=$NEWKUBE_CLUSTER_INTEGRATION_BASTIONPUBLICKEY
         
-  - name: manifest_dep
+  - name: manifestdep
     type: manifest
     steps:
       - IN: deploy_img       
@@ -82,7 +82,7 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       #- IN: manifest_dep2
       - IN: newkubecluster
       - IN: kube_dopts
@@ -92,7 +92,7 @@ jobs:
   - name: deploynewkubeupgradebottom
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       - IN: newkubecluster
       - IN: kube_dopts
       - TASK: managed 
@@ -102,7 +102,7 @@ jobs:
   - name: deploynewkubedefault
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       - IN: newkubecluster
       - IN: kube_dopts
       - TASK: managed  
@@ -113,7 +113,7 @@ jobs:
     method: upgrade
     workflow: serial
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
      # - IN: manifest_dep2
       - IN: oldkubecluster
       - IN: kube_dopts
@@ -123,7 +123,7 @@ jobs:
   - name: deployoldkubeupgradebottom
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       - IN: oldkubecluster
       - IN: kube_dopts
       - TASK: managed 
@@ -133,7 +133,7 @@ jobs:
   - name: deployoldkubedefault
     type: deploy
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       - IN: oldkubecluster
       - IN: kube_dopts
       - TASK: managed  
@@ -143,7 +143,7 @@ jobs:
     type: deploy
     workflow: parallel
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
      # - IN: manifest_dep2
       - IN: oldkubecluster
       - IN: kube_dopts
@@ -155,7 +155,7 @@ jobs:
     method: replace
     workflow: parallel
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
      # - IN: manifest_dep2
       - IN: oldkubecluster
       - IN: kube_dopts
@@ -166,7 +166,7 @@ jobs:
     type: deploy
     #workflow: parallel
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
      # - IN: manifest_dep2
       - IN: newkubecluster
       - IN: kube_dopts
@@ -179,7 +179,7 @@ jobs:
     #method: replace
     #workflow: parallel
     steps:      
-      - IN: manifest_dep
+      - IN: manifestdep
       #- IN: manifest_dep2
       - IN: newkubecluster
       - IN: kube_dopts
