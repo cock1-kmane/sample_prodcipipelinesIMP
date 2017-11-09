@@ -38,7 +38,7 @@ resources:
   
   - name: newkubebastionloadbalancer
     type: loadBalancer
-    integration: kubeGen
+    integration: ship-newkubernetes
     pointer:
       bastionHost:
         address: 54.152.191.70
