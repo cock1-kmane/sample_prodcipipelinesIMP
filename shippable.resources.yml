@@ -107,7 +107,7 @@ resources:
       versionName: "latest"
     flags: test_out_img    
     
-  - name: ship_oldkubeint
+  - name: shipoldkubeint
     type: integration
     integration: "ship-kubernetes"  
   
@@ -115,7 +115,7 @@ resources:
     type: integration
     integration: "ssh-bastion"
     
-  - name: ship_newkubeint
+  - name: shipnewkubeint
     type: integration
     integration: "ship-newkubernetes" 
     
