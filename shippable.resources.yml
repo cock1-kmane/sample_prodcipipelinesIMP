@@ -26,7 +26,19 @@ resources:
   - name: oldkubecluster
     type: cluster
     integration: ship-kubernetes
+    
+  - name: newkubecluster
+    type: cluster
+    integration: ship-newkubernetes
   
+  - name: oldkubecli
+    type: cliConfig
+    integration: ship-kubernetes
+    
+  - name: newkubecli
+    type: cliConfig
+    integration: ship-newkubernetes
+    
   - name: newkubebastioncluster
     type: cluster
     integration: ship-newkubernetes
@@ -78,9 +90,7 @@ resources:
           targetPort: 8002 # A number in 1-65535 or an "IANA_SVC_NAME"  This is the port to access the pod.
          # nodePort: <integer> # Port exposed on the node.  Kubernetes will auto-allocate by default.
        
-  - name: newkubecluster
-    type: cluster
-    integration: ship-newkubernetes
+  
 
   - name: kube_dopts
     type: dockerOptions
