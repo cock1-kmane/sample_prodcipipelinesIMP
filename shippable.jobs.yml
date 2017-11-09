@@ -27,11 +27,13 @@ jobs:
     type: provision
     steps:
       - IN: newkubebastionloadbalancer
+      - IN: ship_newkubesshbastion
   
   - name: oldkubeprovision
     type: provision
     steps:
       - IN: oldkubebastionloadbalancer
+      
       
   - name: newddcintrunsh
     type: runSh
