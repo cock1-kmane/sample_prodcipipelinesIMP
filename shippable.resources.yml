@@ -37,7 +37,6 @@ resources:
         keyIntegration: ship_newkubesshbastion #ssh key integration resource name
   
   - name: newkubebastionloadbalancer
-  - name: kube-service-lb-bash-new
      type: loadBalancer
      integration: kubeGen
      pointer:
