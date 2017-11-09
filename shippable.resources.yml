@@ -34,16 +34,22 @@ resources:
       bastionHost:
         address: 54.152.191.70
         user: ubuntu #bastionHost user
-        keyIntegration: ship_newkubesshbastion
+        keyIntegration: ship_newkubesshbastion #ssh key integration resource name
   
   - name: newkubebastionloadbalancer
-    type: loadBalancer
-    integration: ship-newkubernetes
-    pointer:
-      bastionHost:
-        address: 54.152.191.70
-        user: ubuntu #bastionHost user
-        keyIntegration: ship_newkubesshbastion
+  - name: kube-service-lb-bash-new
+     type: loadBalancer
+     integration: kubeGen
+     pointer:
+       bastionHost:
+         address: 54.152.191.70
+         user: ubuntu #bastionHost user
+         keyIntegration: ship_newkubesshbastion
+       sourceName: "xyz-kube-local-gen-bash-gen-12-bash"
+       method: ClusterIP
+       clusterName: "testCL" # The namespace for the service
+       region: "us-east-1" #"europe-west1-b"
+       namespace: "temp-namespace-f"
   
   - name: oldkubebastionloadbalancer
     type: loadBalancer
@@ -53,7 +59,12 @@ resources:
         address: 54.152.191.70
         user: ubuntu #bastionHost user
         keyIntegration: ship_newkubesshbastion
-        
+      sourceName: "xyz-kube-local-gen-bash-gen-12-bash"
+      method: ClusterIP
+      clusterName: "testCL" # The namespace for the service
+      region: "us-east-1" #"europe-west1-b"
+      namespace: "temp-namespace-f"
+       
   - name: newkubecluster
     type: cluster
     integration: ship-newkubernetes
