@@ -23,11 +23,11 @@ resources:
     seed:
       versionName: "deploy.2"
       
-  - name: oldkube_cluster
+  - name: oldkubecluster
     type: cluster
     integration: ship-kubernetes
   
-  - name: newkube_cluster
+  - name: newkubecluster
     type: cluster
     integration: ship-newkubernetes
 
