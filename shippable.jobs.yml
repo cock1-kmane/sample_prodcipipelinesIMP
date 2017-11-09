@@ -23,6 +23,16 @@ jobs:
         - script: echo SHIP_OLDKUBEINT_INTEGRATION_BASTIONPUBLICKEY=$SHIP_OLDKUBEINT_INTEGRATION_BASTIONPUBLICKEY
       #- OUT: test_out_img
  
+  - name: newkubeprovision
+    type: provision
+    steps:
+      - IN: newkubebastionloadbalancer
+  
+  - name: oldkubeprovision
+    type: provision
+    steps:
+      - IN: oldkubebastionloadbalancer
+      
   - name: newddcintrunsh
     type: runSh
     allowPublicAccess: false
