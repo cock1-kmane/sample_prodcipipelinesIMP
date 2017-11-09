@@ -14,9 +14,13 @@ jobs:
        # showBuildStatus: true
       - IN: ship_oldkubeint
       - TASK:
-        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_USERNAME
-        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_PASSWORD
-        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_URL
+        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_NAME
+        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_CLUSTERACCESSTYPE
+        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_MASTERKUBECONFIGCONTENT
+        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_BASTIONKUBECONFIGCONTENT
+        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_BASTIONHOSTIP
+        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_BASTIONPRIVATEKEY
+        - script: echo $SHIP_OLDKUBEINT_INTEGRATION_BASTIONPUBLICKEY
       #- OUT: test_out_img
  
   - name: newddcint-runsh
@@ -27,18 +31,26 @@ jobs:
        # showBuildStatus: true
       - IN: ship_newkubeint
       - TASK:
-        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_USERNAME
-        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_PASSWORD
-        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_URL
+        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_NAME
+        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_CLUSTERACCESSTYPE
+        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_MASTERKUBECONFIGCONTENT
+        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_BASTIONKUBECONFIGCONTENT
+        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_BASTIONHOSTIP
+        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_BASTIONPRIVATEKEY
+        - script: echo $SHIP_NEWKUBEINT_INTEGRATION_BASTIONPUBLICKEY
   
   - name: oldddcclu-runsh
     type: runSh
     steps:
       - IN: oldkube_cluster
       - TASK:
-        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_USERNAME
-        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_PASSWORD
-        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_URL
+        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_NAME
+        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_CLUSTERACCESSTYPE
+        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT
+        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT
+        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_BASTIONHOSTIP
+        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_BASTIONPRIVATEKEY
+        - script: echo $OLDKUBE_CLUSTER_INTEGRATION_BASTIONPUBLICKEY
       #- OUT: test_out_img
  
   - name: newddcclu-runsh
@@ -47,9 +59,13 @@ jobs:
     steps:      
       - IN: newkube_cluster
       - TASK:
-        - script: echo $NEWKUBE_CLUSTER_INTEGRATION_USERNAME
-        - script: echo $NEWKUBE_CLUSTER_INTEGRATION_PASSWORD
-        - script: echo $NEWKUBEC_CLUSTER_INTEGRATION_URL
+        - script: echo $NEWKUBE_CLUSTER_INTEGRATION_NAME
+        - script: echo $NEWKUBE_CLUSTER_INTEGRATION_CLUSTERACCESSTYPE
+        - script: echo $NEWKUBE_CLUSTER_INTEGRATION_MASTERKUBECONFIGCONTENT
+        - script: echo $NEWKUBE_CLUSTER_INTEGRATION_BASTIONKUBECONFIGCONTENT
+        - script: echo $NEWKUBE_CLUSTER_INTEGRATION_BASTIONHOSTIP
+        - script: echo $NEWKUBE_CLUSTER_INTEGRATION_BASTIONPRIVATEKEY
+        - script: echo $NEWKUBE_CLUSTER_INTEGRATION_BASTIONPUBLICKEY
         
   - name: manifest_dep
     type: manifest
