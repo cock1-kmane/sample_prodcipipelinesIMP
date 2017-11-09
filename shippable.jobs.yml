@@ -76,7 +76,68 @@ jobs:
     type: manifest
     steps:
       - IN: deploy_img2
-      
+  
+  - name: deploynewkubebastionupgradetoplevel
+    type: deploy
+    method: upgrade
+    workflow: serial
+    steps:      
+      - IN: manifestdep
+      #- IN: manifest_dep2
+      - IN: newkubebastioncluster
+      - IN: ship_newkubesshbastion
+      - IN: kube_dopts
+      - TASK: managed  
+    flags: new-kube
+  
+  - name: deploynewkubebastionupgradebottom
+    type: deploy
+    steps:      
+      - IN: manifestdep
+      - IN: newkubebastioncluster
+      - IN: ship_newkubesshbastion
+      - IN: kube_dopts
+      - TASK: managed 
+        deployMethod: upgrade
+    flags: new-kube
+    
+  - name: deploynewkubebastiondefault
+    type: deploy
+    steps:      
+      - IN: manifestdep
+      - IN: newkubebastioncluster
+      - IN: ship_newkubesshbastion
+      - IN: kube_dopts
+      - TASK: managed  
+    flags: new-kube
+  
+  - name: deploynewkubebastionbluegreen
+    type: deploy
+    #workflow: parallel
+    steps:      
+      - IN: manifestdep
+     # - IN: manifest_dep2
+      - IN: newkubebastioncluster
+      - IN: ship_newkubesshbastion
+      - IN: kube_dopts
+      - TASK: managed 
+        deployMethod: blueGreen
+    flags: new-kube
+  
+  - name: deploynewkubebastionreplace
+    type: deploy
+    #method: replace
+    #workflow: parallel
+    steps:      
+      - IN: manifestdep
+      #- IN: manifest_dep2
+      - IN: newkubebastioncluster
+      - IN: ship_newkubesshbastion
+      - IN: kube_dopts
+      - TASK: managed 
+        deployMethod: replace
+    flags: new-kube
+    
   - name: deploynewkubeupgradetoplevel
     type: deploy
     method: upgrade
