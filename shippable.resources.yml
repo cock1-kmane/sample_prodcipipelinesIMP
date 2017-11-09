@@ -65,11 +65,18 @@ resources:
         address: 54.152.191.70
         user: ubuntu #bastionHost user
         keyIntegration: ship_newkubesshbastion
-      sourceName: "xyz-kube-local-gen-bash-gen-12-bash"
+      sourceName: "xyz-kube-local-gen-bash-gen-12-bashold"
       method: ClusterIP
       clusterName: "testCL" # The namespace for the service
       region: "us-east-1" #"europe-west1-b"
       namespace: "temp-namespace-f"
+    version:
+      ports:
+        - name: kube-local-port  # Required for multiple ports, must be a DNS_LABEL
+          protocol: TCP  # Kubernetes default: TCP
+          port: 8001     # Required.
+          targetPort: 8002 # A number in 1-65535 or an "IANA_SVC_NAME"  This is the port to access the pod.
+         # nodePort: <integer> # Port exposed on the node.  Kubernetes will auto-allocate by default.
        
   - name: newkubecluster
     type: cluster
