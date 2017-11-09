@@ -23,19 +23,15 @@ resources:
     seed:
       versionName: "deploy.2"
       
-  - name: oldddc_cluster
+  - name: oldkube_cluster
     type: cluster
-    integration: ddc
-    pointer:
-      sourceName : "nothing"
+    integration: ship-kubernetes
   
-  - name: newddc_cluster
+  - name: newkube_cluster
     type: cluster
-    integration: newddc
-    pointer:
-      sourceName : "nothing"
-    
-  - name: ddc_dopts
+    integration: ship-newkubernetes
+
+  - name: kube_dopts
     type: dockerOptions
     version:
       memory: 128
@@ -50,13 +46,13 @@ resources:
       versionName: "latest"
     flags: test_out_img    
     
-  - name: ship_oldddcint
+  - name: ship_oldkubeint
     type: integration
-    integration: "ddc"  
+    integration: "ship-kubernetes"  
   
-  - name: ship_newddcint
+  - name: ship_newkubeint
     type: integration
-    integration: "newddc" 
+    integration: "ship-newkubernetes" 
     
   - name: test_params
     type: params
